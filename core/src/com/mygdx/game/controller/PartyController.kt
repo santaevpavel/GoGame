@@ -12,5 +12,19 @@ public class PartyController(val view: View) {
     init {
         partySettings = PartySettings(11, 11)
         model = GoModel(partySettings)
+
+        fill()
+    }
+
+    fun start(){
+        view.onModelChanged(model)
+    }
+
+    private fun fill(){
+        model.addStone(0, 0)
+        model.addStone(2, 2)
+        model.addStone(4, 5)
+        model.addStone(10, 10)
+        model.addStone(0, 10)
     }
 }

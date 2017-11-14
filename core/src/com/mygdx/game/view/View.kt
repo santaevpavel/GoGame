@@ -1,10 +1,12 @@
 package com.mygdx.game.view
 
-internal var WIDTH = 100f
-internal var HEIGHT = 100f
+import com.mygdx.game.model.GoModel
+
+internal var WORLD_WIDTH = 100f
+internal var WORLD_HEIGHT = 100f
 
 public interface View {
 
-    fun onModelChanged()
+    fun onModelChanged(goModel: GoModel)
 
 }

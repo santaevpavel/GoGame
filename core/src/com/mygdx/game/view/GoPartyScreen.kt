@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.mygdx.game.model.GoModel
 import com.mygdx.game.view.stage.GoStage
 
 class GoPartyScreen : Screen, View {
@@ -15,11 +16,11 @@ class GoPartyScreen : Screen, View {
     init {
         // Init camera
         camera = OrthographicCamera()
-        camera.setToOrtho(false, WIDTH, HEIGHT)
+        camera.setToOrtho(false, WORLD_WIDTH, WORLD_HEIGHT)
         camera.zoom = 1f
 
         // Init stage
-        goStage = GoStage(FitViewport(WIDTH, HEIGHT))
+        goStage = GoStage(FitViewport(WORLD_WIDTH, WORLD_HEIGHT))
     }
 
     override fun hide() {}
@@ -27,20 +28,29 @@ class GoPartyScreen : Screen, View {
     override fun show() {}
 
     override fun render(delta: Float) {
-        Gdx.gl.glClearColor(1f, 0f, 0f, 1f)
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+
+        camera.update()
+
+        goStage.act(delta)
+        goStage.draw()
     }
 
     override fun pause() {}
 
     override fun resume() {}
 
-    override fun resize(width: Int, height: Int) {}
+    override fun resize(width: Int, height: Int) {
+        goStage.viewport.update(width, height, true);
+    }
 
-    override fun dispose() {}
+    override fun dispose() {
+        goStage.dispose()
+    }
 
-    override fun onModelChanged() {
-
+    override fun onModelChanged(goModel: GoModel) {
+        goStage.updateBoard(goModel)
     }
 
 }
