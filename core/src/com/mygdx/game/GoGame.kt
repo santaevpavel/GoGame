@@ -11,6 +11,9 @@ class GoGame : Game() {
         setScreen(goPartyScreen)
 
         val partyController = PartyController(goPartyScreen)
+        goPartyScreen.controller = partyController
+        goPartyScreen.goModel = partyController.model
+
         partyController.start()
     }
 

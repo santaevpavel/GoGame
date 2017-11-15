@@ -1,6 +1,6 @@
 package com.mygdx.game.model
 
-public class Board(
+class Board(
         val height: Int,
         val width: Int) {
 

@@ -1,13 +1,16 @@
 package com.mygdx.game.controller
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.mygdx.game.model.GoModel
 import com.mygdx.game.model.PartySettings
 import com.mygdx.game.view.View
+import java.util.*
 
-public class PartyController(val view: View) {
+class PartyController(private val view: View) {
 
-    private val model: GoModel
-    private var partySettings: PartySettings
+    var partySettings: PartySettings
+    val model: GoModel
 
     init {
         partySettings = PartySettings(11, 11)
@@ -16,8 +19,13 @@ public class PartyController(val view: View) {
         fill()
     }
 
-    fun start(){
-        view.onModelChanged(model)
+    fun start() {}
+
+    fun handleInput() {
+        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+            model.addStone(Random().nextInt(model.board.value.width),
+                    Random().nextInt(model.board.value.height))
+        }
     }
 
     private fun fill(){

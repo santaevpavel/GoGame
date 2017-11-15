@@ -5,10 +5,22 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.mygdx.game.controller.PartyController
 import com.mygdx.game.model.GoModel
 import com.mygdx.game.view.stage.GoStage
 
 class GoPartyScreen : Screen, View {
+
+    var controller: PartyController? = null
+    var goModel: GoModel? = null
+        set(value) {
+            field = value
+            value?.board?.observe {
+                goStage.updateBoard(value)
+            }
+
+            value?.turnNumber?.observe { }
+        }
 
     private val camera: OrthographicCamera
     private val goStage: GoStage
@@ -21,6 +33,7 @@ class GoPartyScreen : Screen, View {
 
         // Init stage
         goStage = GoStage(FitViewport(WORLD_WIDTH, WORLD_HEIGHT))
+
     }
 
     override fun hide() {}
@@ -30,6 +43,8 @@ class GoPartyScreen : Screen, View {
     override fun render(delta: Float) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+
+        controller?.handleInput()
 
         camera.update()
 
@@ -47,10 +62,6 @@ class GoPartyScreen : Screen, View {
 
     override fun dispose() {
         goStage.dispose()
-    }
-
-    override fun onModelChanged(goModel: GoModel) {
-        goStage.updateBoard(goModel)
     }
 
 }

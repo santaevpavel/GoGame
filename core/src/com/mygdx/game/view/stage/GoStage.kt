@@ -14,7 +14,7 @@ class GoStage(viewport: Viewport) : Stage(viewport) {
     fun updateBoard(goModel: GoModel){
         clear()
 
-        val board = goModel.board
+        val board = goModel.board.value
 
         val stoneSize = Math.min(width, height) / board.width
         for (x in 0 until board.width){

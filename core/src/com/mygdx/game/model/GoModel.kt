@@ -1,27 +1,33 @@
 package com.mygdx.game.model
 
-public class GoModel(var partySettings: PartySettings) {
+import com.mygdx.game.utils.ObservableField
 
-    var board: Board
+class GoModel(var partySettings: PartySettings) {
+
+    var board: ObservableField<Board>
         private set
     var currentPlayer: Player = Player.WHITE
         private set(value){ field = value}
 
+    val turnNumber: ObservableField<Int> = ObservableField(0)
 
     init {
-        board = Board(partySettings.boardWidth, partySettings.boardHeight)
+        board = ObservableField<Board>(Board(partySettings.boardWidth,
+                partySettings.boardHeight))
         currentPlayer = Player.WHITE
     }
 
     fun addStone(x: Int, y: Int){
-        if (board.getGoPoint(x, y) == GoPoint.EMPTY){
-            board.setGoPoint(x, y, currentPlayer.getStone())
+        if (board.value.getGoPoint(x, y) == GoPoint.EMPTY) {
+            board.value.setGoPoint(x, y, currentPlayer.getStone())
             currentPlayer = currentPlayer.getOpposite()
         }
+        turnNumber.value++
+        board.notifySubscribers()
     }
 }
 
-public enum class Player{
+enum class Player {
     BLACK,
     WHITE;
 
