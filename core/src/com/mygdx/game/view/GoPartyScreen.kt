@@ -6,13 +6,13 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.mygdx.game.controller.PartyController
-import com.mygdx.game.model.GoModel
+import com.mygdx.game.model.IModel
 import com.mygdx.game.view.stage.GoStage
 
 class GoPartyScreen : Screen, View {
 
     var controller: PartyController? = null
-    var goModel: GoModel? = null
+    var model: IModel? = null
         set(value) {
             field = value
             value?.board?.observe {

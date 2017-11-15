@@ -1,5 +1,5 @@
 package com.mygdx.game.model
 
-public data class PartySettings(
+data class PartySettings(
         var boardWidth: Int,
         var boardHeight: Int)

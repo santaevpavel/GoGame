@@ -1,8 +1,8 @@
-package com.mygdx.game.model
+package com.mygdx.game.model.board
 
 class Board(
-        val height: Int,
-        val width: Int) {
+        override val height: Int,
+        override val width: Int) : IBoard {
 
     private val board: MutableList<GoPoint>
 
@@ -13,7 +13,7 @@ class Board(
         }
     }
 
-    fun getGoPoint(x: Int, y: Int): GoPoint {
+    override fun getGoPoint(x: Int, y: Int): GoPoint {
         checkCoordinates(x, y)
         return board[y * width + x]
     }
@@ -32,10 +32,4 @@ class Board(
             throw IllegalArgumentException("Invalid coordinates: $x $y")
         }
     }
-}
-
-enum class GoPoint{
-    EMPTY,
-    WHITE_STONE,
-    BLACK_STONE
 }

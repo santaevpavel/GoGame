@@ -12,7 +12,7 @@ class GoGame : Game() {
 
         val partyController = PartyController(goPartyScreen)
         goPartyScreen.controller = partyController
-        goPartyScreen.goModel = partyController.model
+        goPartyScreen.model = partyController.model
 
         partyController.start()
     }

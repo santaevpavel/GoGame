@@ -2,7 +2,8 @@ package com.mygdx.game.controller
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
-import com.mygdx.game.model.GoModel
+import com.mygdx.game.model.IModel
+import com.mygdx.game.model.Model
 import com.mygdx.game.model.PartySettings
 import com.mygdx.game.view.View
 import java.util.*
@@ -10,11 +11,11 @@ import java.util.*
 class PartyController(private val view: View) {
 
     var partySettings: PartySettings
-    val model: GoModel
+    val model: IModel
 
     init {
         partySettings = PartySettings(11, 11)
-        model = GoModel(partySettings)
+        model = Model(partySettings)
 
         fill()
     }

@@ -2,8 +2,8 @@ package com.mygdx.game.view.stage
 
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
-import com.mygdx.game.model.GoModel
-import com.mygdx.game.model.GoPoint
+import com.mygdx.game.model.IModel
+import com.mygdx.game.model.board.GoPoint
 
 class GoStage(viewport: Viewport) : Stage(viewport) {
 
@@ -11,10 +11,10 @@ class GoStage(viewport: Viewport) : Stage(viewport) {
         super.act(delta)
     }
 
-    fun updateBoard(goModel: GoModel){
+    fun updateBoard(model: IModel) {
         clear()
 
-        val board = goModel.board.value
+        val board = model.board.value
 
         val stoneSize = Math.min(width, height) / board.width
         for (x in 0 until board.width){
