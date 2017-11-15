@@ -9,12 +9,17 @@ import com.mygdx.game.model.Player
 
 class Stone : Actor() {
 
-    var player: Player
+    var player: Player = Player.WHITE
+        set(value) {
+            field = value
+            val pixmap = Pixmap(100, 100, Pixmap.Format.RGBA8888)
+            pixmap.setColor(if (player == Player.WHITE) Color.WHITE else Color.BLACK)
+            pixmap.fillCircle(50, 50, 50)
+            texture = Texture(pixmap)
+        }
     private var texture: Texture
 
     init {
-        player = Player.WHITE
-
         val pixmap = Pixmap(100, 100, Pixmap.Format.RGBA8888)
         pixmap.setColor(Color.WHITE)
         pixmap.fillCircle(50, 50, 50)

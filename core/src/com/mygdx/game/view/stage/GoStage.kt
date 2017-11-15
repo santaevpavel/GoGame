@@ -3,6 +3,7 @@ package com.mygdx.game.view.stage
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.mygdx.game.model.IModel
+import com.mygdx.game.model.Player
 import com.mygdx.game.model.board.GoPoint
 
 class GoStage(viewport: Viewport) : Stage(viewport) {
@@ -23,6 +24,7 @@ class GoStage(viewport: Viewport) : Stage(viewport) {
                 val goPoint = board.getGoPoint(x, y)
                 if (goPoint != GoPoint.EMPTY){
                     val stone = Stone()
+                    stone.player = if (goPoint == GoPoint.WHITE_STONE) Player.WHITE else Player.BLACK
                     stone.width = stoneSize
                     stone.height = stoneSize
 

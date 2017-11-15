@@ -12,8 +12,9 @@ class ObservableField<T>(initValue: T) {
 
     private val observers: MutableList<Observer<T>> = ArrayList()
 
-    fun observe(observer: Observer<T>) {
+    fun observe(observer: Observer<T>, isEmitImmediately: Boolean = true) {
         observers.add(observer)
+        if (isEmitImmediately) observer(value)
     }
 
     fun remove(observer: Observer<T>) {
