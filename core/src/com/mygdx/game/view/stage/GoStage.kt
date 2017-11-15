@@ -18,6 +18,15 @@ class GoStage(viewport: Viewport) : Stage(viewport) {
     fun updateBoard(model: IModel) {
         clear()
 
+        val boardActor = BoardActor(boardWidth, boardHeight)
+        val size: Float = Math.min(width, height)
+        boardActor.x = (width - size) / 2
+        boardActor.y = (height - size) / 2
+        boardActor.width = size
+        boardActor.height = size
+
+        addActor(boardActor)
+
         val board = model.board.value
 
         val stoneSize = Math.min(width, height) / board.width
@@ -40,5 +49,4 @@ class GoStage(viewport: Viewport) : Stage(viewport) {
             }
         }
     }
-
 }
