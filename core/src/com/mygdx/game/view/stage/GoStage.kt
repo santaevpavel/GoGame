@@ -8,6 +8,9 @@ import com.mygdx.game.model.board.GoPoint
 
 class GoStage(viewport: Viewport) : Stage(viewport) {
 
+    var boardWidth: Int = 0
+    var boardHeight: Int = 0
+
     override fun act(delta: Float) {
         super.act(delta)
     }

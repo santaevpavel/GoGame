@@ -21,6 +21,10 @@ class GoPartyScreen : Screen {
         model = Model(partySettings)
 
         view = View(model)
+        view.listener = { x, y ->
+            model.addStone(x, y)
+        }
+
         fill()
     }
 

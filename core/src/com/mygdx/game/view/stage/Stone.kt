@@ -12,9 +12,9 @@ class Stone : Actor() {
     var player: Player = Player.WHITE
         set(value) {
             field = value
-            val pixmap = Pixmap(100, 100, Pixmap.Format.RGBA8888)
+            val pixmap = Pixmap(200, 200, Pixmap.Format.RGBA8888)
             pixmap.setColor(if (player == Player.WHITE) Color.WHITE else Color.BLACK)
-            pixmap.fillCircle(50, 50, 50)
+            pixmap.fillCircle(pixmap.width / 2, pixmap.height / 2, pixmap.width / 2)
             texture = Texture(pixmap)
         }
     private var texture: Texture
