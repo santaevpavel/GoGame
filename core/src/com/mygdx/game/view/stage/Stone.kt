@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.mygdx.game.model.Player
 
@@ -12,12 +13,13 @@ class Stone : Actor() {
     var player: Player = Player.WHITE
         set(value) {
             field = value
-            val pixmap = Pixmap(200, 200, Pixmap.Format.RGBA8888)
-            pixmap.setColor(if (player == Player.WHITE) Color.WHITE else Color.BLACK)
-            pixmap.fillCircle(pixmap.width / 2, pixmap.height / 2, pixmap.width / 2)
-            texture = Texture(pixmap)
+            texture = Texture(if (player == Player.WHITE) "stone_white.png" else "stone_black.png")
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear)
+
+            sprite = Sprite(texture)
         }
     private var texture: Texture
+    private var sprite: Sprite? = null
 
     init {
         val pixmap = Pixmap(100, 100, Pixmap.Format.RGBA8888)
@@ -32,7 +34,8 @@ class Stone : Actor() {
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        batch.draw(texture, x, y, width, height,
-                0, 0, texture.width, texture.height, false, false)
+        sprite?.setSize(width, height)
+        sprite?.setPosition(x, y)
+        sprite?.draw(batch)
     }
 }

@@ -40,6 +40,7 @@ class BoardActor(width: Int, height: Int) : Actor() {
         }
 
         texture = Texture(pixmap)
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear)
     }
 
     override fun act(delta: Float) {
